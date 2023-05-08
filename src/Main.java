@@ -12,36 +12,39 @@ public class Main {
 //        task10();
     }
 
-    public static void calcLeapYear(int a) {
-        boolean leapYear = (a % 400 == 0) || (a % 4 == 0 && a % 100 != 0);
+    public static void calcLeapYear(int year) {
+        boolean leapYear = (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
         if (leapYear)
-            System.out.println(a + " год является високосным");
+            System.out.println(year + " год является високосным");
         else
-            System.out.println(a + " год не является високосным");
+            System.out.println(year + " год не является високосным");
     }
 
-    public static void detectionOs(int a, int b) { //clientDeaviceYear = a; clientOS = b
-        if (b == 0 && a >= 2015) {
+    public static void detectionOs(int deviceYear, int typeOs) {
+        if (typeOs == 0 && deviceYear >= 2015) {
             System.out.println("Установите версию приложения для iOS по ссылке");
-        } else if (b == 0 && a < 2015) {
+        } else if (typeOs == 0 && deviceYear < 2015) {
             System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-        } else if (b == 1 && a >= 2015) {
+        } else if (typeOs == 1 && deviceYear >= 2015) {
             System.out.println("Установите версию приложения для Android по ссылке");
         } else {
             System.out.println("Установите облегченную версию приложения для Android по ссылке");
         }
     }
 
-    public static void calcDaysDelivery(int a) {
-        if (a < 20) {
-            System.out.println("Потребуется дней: 1 ");
-        } else if (a >= 20 && a <= 60) {
-            System.out.println("Потребуется дней: 2 ");
-        } else if (a >= 60 && a <= 100) {
-            System.out.println("Потребуется дней: 3 ");
+
+    public static int calcDaysDelivery(int deliveryDistance) {
+        int calcDaysDelivery = 1;
+        if (deliveryDistance < 20) {
+            calcDaysDelivery += 0;
+        } else if (deliveryDistance >= 20 && deliveryDistance <= 60) {
+            calcDaysDelivery += 1;
+        } else if (deliveryDistance >= 60 && deliveryDistance <= 100) {
+            calcDaysDelivery += 2;
         } else {
-            System.out.println("Доставка не осуществляется");
+            calcDaysDelivery = 0;
         }
+        return calcDaysDelivery;
     }
 
     public static void task1() {
@@ -53,17 +56,23 @@ public class Main {
 
     public static void task2() {
         System.out.println("Задача 2");
-        int clientDeviceYear = 2014;
-        byte clientOS = 1;
+        int clientDeviceYear = 2017;
+        byte clientOS = 0;
         detectionOs(clientDeviceYear, clientOS);
     }
 
 
     public static void task3() {
         System.out.println("Задача 3");
-        int deliveryDistance = 15;
+        int deliveryDistance = 130;
         calcDaysDelivery(deliveryDistance);
+        if (calcDaysDelivery(deliveryDistance) >= 1 && calcDaysDelivery(deliveryDistance) <= 3) {
+            System.out.println("Потребуется дней: " + calcDaysDelivery(deliveryDistance));
+        } else {
+            System.out.println("Доставка не осуществляется");
+        }
     }
+
 }
 
 
